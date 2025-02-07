@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Aether Agents</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Aether Agents Logo" class="logo"> Aether Agents</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero section-padding">
+            <div class="container">
+                <h1>Get in Touch. We're Here to Help.</h1>
+                <p class="sub-headline">Have questions about Aether Agents or need a custom solution? Reach out to us and let's discuss how we can help you leverage the power of AI.</p>
+            </div>
+        </section>
+
+        <section class="contact-form-section section-padding">
+            <div class="container">
+                <form class="contact-form" action="#" method="POST" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="button primary-button" onclick="handleContactFormSubmit(event)">Send Message</button>
+                    </div>
+                </form>
+
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <p>Email: <a href="mailto:greg@gregm.ca">greg@gregm.ca</a></p>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2023 Aether Agents. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function handleContactFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            const form = event.target.form;
+            const formData = new FormData(form);
+            const formDataObject = Object.fromEntries(formData.entries());
+
+            const mailtoLink = createMailtoLink(
+                'greg@gregm.ca',
+                'Website Contact Form Submission: ' + formDataObject.subject,
+                `Name: ${formDataObject.name}\nEmail: ${formDataObject.email}\n\nMessage:\n${formDataObject.message}`
+            );
+
+            window.location.href = mailtoLink; // Redirect to mailto link
+        }
+
+        function createMailtoLink(emailAddress, subject, body) {
+            return `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', handleContactFormSubmit);
+    </script>
+</body>
+</html>
